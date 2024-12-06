@@ -17,6 +17,12 @@ body {
     border: 10px solid sandybrown;
     position: relative;
 }
+#container .player {
+    background-color: coral;
+    height: 20px;
+    width: 10px;
+    position: absolute;
+}
 #startGame {
     margin-top: 30px;
     padding: 10px 15px 10px 15px;
