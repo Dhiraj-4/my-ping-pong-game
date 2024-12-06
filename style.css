@@ -19,7 +19,7 @@ body {
 }
 #container .player {
     background-color: coral;
-    height: 20px;
+    height: 100px;
     width: 10px;
     position: absolute;
 }

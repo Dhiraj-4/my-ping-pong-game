@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const container = document.getElementById('container');
 
-    const player1Location = [{x: 250, y: 30}, {x: 270, y: 30}, {x: 290, y: 30}, {x: 310, y: 30}];
+    const player1Location = {x: 250, y: 30};
 
-    const player2Location = [{x: 250, y: 540}, {x: 270, y: 540}, {x: 290, y: 540}, {x: 310, y: 540}];
+    const player2Location = {x: 250, y: 540};
 
     let ballLocation = {x: 300, y: 300};
     const ball = document.createElement('div');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ball.style.top = ballLocation.x + 'px';
     ball.style.left = ballLocation.y + 'px';
     
-    let dx = -5;
+    let dx = 0;
     let dy = -5;
 
     let gameOn  = false;
@@ -94,23 +94,21 @@ document.addEventListener('DOMContentLoaded', () => {
         ballLocation.x += dx;
         ballLocation.y += dy;
     }
+    // const player1Location = {x: 250, y: 30};
 
+    // const player2Location = {x: 250, y: 540};
     function player1Collision() {
-        for(let i = 0; i < player1Location.length; i++) {
-            if(ballLocation.x == player1Location[i].x + 20  && ballLocation.y == player1Location[i].y + 10) {
-                return true;
-            }
+        if((ballLocation.x > player1Location.x && ballLocation.x < (player1Location.x + 100)) && (ballLocation.y > player1Location.y && ballLocation.y < (player1Location.y + 10))){
+            return true;
         }
         return false;
     }
 
     function player2Collision() {
-       for(let i = 0; i < player2Location.length; i++) {
-        if(ballLocation.x == player2Location[i].x - 10  && ballLocation.y == player2Location[i].y - 10) {
+        if((ballLocation.x > player2Location.x && ballLocation.x < (player2Location.x + 100)) && (ballLocation.y < player2Location.y && ballLocation.y > (player2Location.y - 10))){
             return true;
         }
-       }
-       return false;
+        return false;
     }
     
     function drawPlayersAndBall() {
@@ -123,21 +121,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function drawPlayers() {
-            for(let i = 0; i < player1Location.length; i++) {
+            
                 const player1 = document.createElement('div');
                 player1.classList = 'player';
-                player1.style.top = player1Location[i].x + 'px';
-                player1.style.left = player1Location[i].y + 'px';
+                player1.style.top = player1Location.x + 'px';
+                player1.style.left = player1Location.y + 'px';
                 container.appendChild(player1);
-            }
 
-            for(let i = 0; i < player2Location.length; i++) {
+            
                 const player2 = document.createElement('div');
                 player2.classList = 'player';
-                player2.style.top = player2Location[i].x + 'px';
-                player2.style.left = player2Location[i].y + 'px';
+                player2.style.top = player2Location.x + 'px';
+                player2.style.left = player2Location.y + 'px';
                 container.appendChild(player2);
-            }
         }
 
         drawBall();
