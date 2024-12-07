@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updatePlayer1();
             // updatePlayer2();
             drawPlayersAndBall();
-        },1);
+        },20);
     }
 
     function updateBall() {
