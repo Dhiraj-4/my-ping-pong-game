@@ -17,6 +17,17 @@ body {
     border: 10px solid sandybrown;
     position: relative;
 }
+#scoreBoard{
+    justify-content: space-around;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    display: none;
+}
+#scoreBoard #player2Score,#player1Score {
+    height: 100%;
+    width: 40%;
+}
 #container .player {
     background-color: coral;
     height: 100px;

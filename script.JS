@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const container = document.getElementById('container');
 
+    const scoreBoard = document.getElementById('scoreBoard');
+    const player1ScoreBoard = document.getElementById('player1Score');
+
+    const player2ScoreBoard = document.getElementById('player2Score');
+
+    let player1Score = 0;
+    let player2Score = 0;
+
+    player1ScoreBoard.textContent = "Player1 Score: " + player1Score;
+    player2ScoreBoard.textContent = "Player2 Score: " + player2Score;
+
     const player1Location = {x: 250, y: 30};
 
     const player2Location = {x: 250, y: 540};
@@ -29,16 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
             gameOn = true;
             startGame.style.display = 'none';
             container.appendChild(player2);
+            scoreBoard.style.display = 'flex';
         }
     });
 
     function gameLoop() {
         intervals = setInterval(() => {
-            // ifScored();
             updateBall();
             updatePlayer1();
+            // updatePlayer2();
             drawPlayersAndBall();
-        },20);
+        },1);
     }
 
     function updateBall() {
@@ -72,11 +84,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ballLocation.y = 300;
             dx = 0;
             dy = -5;
+            player2Score++;
+            ifScore();
         } else if(ballLocation.y == 0) {
             ballLocation.x = 300;
             ballLocation.y = 300;
             dx = 0;
             dy = 5;
+            player1Score++;
+            ifScore();
         }
         
         if (player1Collision()){
@@ -102,9 +118,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ballLocation.y += dy;
     }
 
+    function ifScore(){
+        player1ScoreBoard.textContent = "Player1 Score: " + player1Score;
+        player2ScoreBoard.textContent = "Player2 Score: " + player2Score;
+    }
+
     function updatePlayer1() {
         if(ballLocation.x < 520 && ballLocation.x > 50) {
             player1Location.x = ballLocation.x - 50;
+        }
+    }
+
+    function updatePlayer2() {
+        if(ballLocation.x < 520 && ballLocation.x > 50) {
+            player2Location.x = ballLocation.x - 50;
         }
     }
 
@@ -125,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 player2Location.x += 20;
             }
         }
-        drawPlayersAndBall();
     }
     // const player1Location = {x: 250, y: 30};
 
